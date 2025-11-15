@@ -156,8 +156,8 @@ a:hover {
 }
 
 .card-icon {
-  height: 42px;
-  margin-bottom: 16px;
+  height: 84px;
+  margin-bottom: 32px;
 }
 
 .card-title {
@@ -188,8 +188,8 @@ a:hover {
 }
 
 .inventory-car {
-  height: 70px;
-  margin-bottom: 16px;
+  height: 140px;
+  margin-bottom: 32px;
 }
 
 .inventory-name {

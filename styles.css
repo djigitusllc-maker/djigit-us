@@ -189,23 +189,23 @@ a:hover {
 
 .inventory-car {
   height: 160px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 .inventory-name {
   font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 12px;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
 .inventory-meta {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.4;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .inventory-price {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
 }
 

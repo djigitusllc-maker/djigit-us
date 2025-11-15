@@ -2,287 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Client Application – DJIGIT US</title>
+  <title>DJIGIT US — Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="page-application">
+<body>
+  <div class="page-wrapper">
+    <header class="top-bar">
+      <div class="top-bar-inner">
+        <div class="brand">
+          <img
+            src="img/DJIGIT_LOGO-removebg-preview.png"
+            alt="DJIGIT US — SPIRIT OF ROADS"
+            class="brand-logo"
+          />
+        </div>
+        <nav class="main-nav">
+          <a href="index.html">Home</a>
+          <a href="application.html" class="active">Application</a>
+        </nav>
+      </div>
+    </header>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="logo-image-wrap">
-      <img src="img/DJIGIT_LOGO-removebg-preview.png"
-           alt="DJIGIT US — SPIRIT OF ROADS"
-           class="logo-image" />
-    </div>
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="application.html" class="nav-link active">Application</a>
-    </nav>
+    <main class="section">
+      <div class="form-wrapper">
+        <h1 class="section-title">Start Application</h1>
+        <p class="form-note">
+          Please fill out this short form so we can review your request and get
+          back to you with next steps.
+        </p>
+        <iframe
+          class="form-embed"
+          src="https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec"
+        ></iframe>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">DJIGIT US — SPIRIT OF ROADS</div>
+        <div class="footer-row">
+          Independent dealership &amp; auto-broker · LA County, CA
+        </div>
+        <div class="footer-row">
+          Clean-title cars · Broker service · DMV paperwork assistance
+        </div>
+        <div class="footer-row">
+          <a href="mailto:djigitusllc@gmail.com">djigitusllc@gmail.com</a> ·
+          💬 Telegram:
+          <a href="https://t.me/djigitus" target="_blank">@djigitus</a>
+        </div>
+        <div class="footer-row">
+          10505 Victory Blvd, Unit L, North Hollywood, CA 91606 · By appointment
+          only
+        </div>
+        <div class="footer-row">
+          Written communication preferred for clarity and records.
+        </div>
+        <div class="footer-row footer-row--small">
+          © 2025 DJIGIT US LLC. All rights reserved.
+        </div>
+      </div>
+    </footer>
   </div>
-</header>
-
-<main>
-  <section class="section section-form">
-    <div class="container form-container">
-      <h1 class="section-title main-title">Client Credit Application</h1>
-      <p class="section-lead">
-        Please fill out all required fields. Your information is used only to help secure financing for your vehicle purchase.
-      </p>
-
-      <form id="creditAppForm" class="credit-app-form">
-        <!-- Applicant Information -->
-        <h2 class="form-section-title">Applicant Information</h2>
-
-        <div class="grid-2">
-          <div class="field">
-            <label>Full Name <span class="req">*</span></label>
-            <input type="text" name="full_name" required />
-          </div>
-          <div class="field">
-            <label>Date of Birth <span class="req">*</span></label>
-            <input type="date" name="dob" required />
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>SSN (last 4 digits only) <span class="req">*</span></label>
-            <input type="text" name="ssn4" maxlength="4" required />
-          </div>
-          <div class="field">
-            <label>Cell Phone <span class="req">*</span></label>
-            <input type="tel" name="cell_phone" required />
-          </div>
-          <div class="field">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" name="email" required />
-          </div>
-        </div>
-
-        <!-- Address -->
-        <h2 class="form-section-title">Current Address</h2>
-
-        <div class="field">
-          <label>Street Address <span class="req">*</span></label>
-          <input type="text" name="address_street" required />
-        </div>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>City <span class="req">*</span></label>
-            <input type="text" name="address_city" required />
-          </div>
-          <div class="field">
-            <label>State <span class="req">*</span></label>
-            <input type="text" name="address_state" required />
-          </div>
-          <div class="field">
-            <label>ZIP <span class="req">*</span></label>
-            <input type="text" name="address_zip" required />
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>Time at Address – Years</label>
-            <input type="number" name="time_at_address_years" min="0" />
-          </div>
-          <div class="field">
-            <label>Time at Address – Months</label>
-            <input type="number" name="time_at_address_months" min="0" max="11" />
-          </div>
-          <div class="field">
-            <label>Housing Status</label>
-            <input type="text" name="housing_status" placeholder="Rent / Own / Other" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Monthly Rent / Mortgage Payment</label>
-          <input type="number" name="housing_payment" min="0" />
-        </div>
-
-        <!-- Employment -->
-        <h2 class="form-section-title">Employment & Income</h2>
-
-        <div class="field">
-          <label>Employer Name <span class="req">*</span></label>
-          <input type="text" name="employer_name" required />
-        </div>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>Job Title</label>
-            <input type="text" name="job_title" />
-          </div>
-          <div class="field">
-            <label>Time at Employer – Years</label>
-            <input type="number" name="time_at_employer_years" min="0" />
-          </div>
-          <div class="field">
-            <label>Time at Employer – Months</label>
-            <input type="number" name="time_at_employer_months" min="0" max="11" />
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="field">
-            <label>Monthly Gross Income ($) <span class="req">*</span></label>
-            <input type="number" name="monthly_income" min="0" required />
-          </div>
-          <div class="field">
-            <label>Other Monthly Income ($)</label>
-            <input type="number" name="other_income" min="0" />
-          </div>
-        </div>
-
-        <!-- Driver License -->
-        <h2 class="form-section-title">Driver License</h2>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>DL Number <span class="req">*</span></label>
-            <input type="text" name="dl_number" required />
-          </div>
-          <div class="field">
-            <label>DL State <span class="req">*</span></label>
-            <input type="text" name="dl_state" required />
-          </div>
-          <div class="field">
-            <label>DL Expiration Date <span class="req">*</span></label>
-            <input type="date" name="dl_exp" required />
-          </div>
-        </div>
-
-        <!-- Vehicle Request -->
-        <h2 class="form-section-title">Vehicle You Are Looking For</h2>
-
-        <div class="grid-3">
-          <div class="field">
-            <label>Year</label>
-            <input type="text" name="car_year" />
-          </div>
-          <div class="field">
-            <label>Make</label>
-            <input type="text" name="car_make" />
-          </div>
-          <div class="field">
-            <label>Model / Trim</label>
-            <input type="text" name="car_model" />
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="field">
-            <label>Budget / Price Range</label>
-            <input type="text" name="price_range" />
-          </div>
-          <div class="field">
-            <label>Down Payment (approx.)</label>
-            <input type="text" name="down_payment" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Additional Comments</label>
-          <input type="text" name="comments" placeholder="Anything we should know about your situation or vehicle preferences" />
-        </div>
-
-        <!-- Consent -->
-        <h2 class="form-section-title">Consent & Authorization</h2>
-
-        <div class="legal-text">
-          By submitting this application, you certify that the information provided is true and correct
-          to the best of your knowledge. You authorize DJIGIT US and its financing partners to obtain
-          and review your credit report and any other information necessary to process this application.
-        </div>
-
-        <div class="checkbox-line checkbox-terms">
-          <input type="checkbox" id="consentAgree" required />
-          <label for="consentAgree">
-            I have read and agree to the terms above. <span class="req">*</span>
-          </label>
-        </div>
-
-        <div class="form-submit">
-          <button type="submit" class="btn btn-primary">Submit Application</button>
-        </div>
-
-        <div id="formSuccess" class="legal-text" style="display:none; margin-top:16px; background:#d8f5da; border-color:#4caf50; color:#275130;">
-          Thank you! Your application has been submitted.
-        </div>
-      </form>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="dj-footer">
-    <div class="dj-footer-inner">
-
-      <div class="dj-footer-title">
-        DJIGIT US — <span>SPIRIT OF ROADS</span>
-      </div>
-
-      <div class="dj-footer-row">
-        Independent dealership &amp; auto-broker • LA County, CA
-      </div>
-
-      <div class="dj-footer-row">
-        Clean-title cars • Broker service • DMV paperwork assistance
-      </div>
-
-      <div class="dj-footer-contact">
-        <span>📧 <a href="mailto:djigitusllc@gmail.com">djigitusllc@gmail.com</a></span>
-        <span class="dj-sep">|</span>
-        <span>💬 <a href="https://t.me/djigitus" target="_blank" rel="noopener">@djigitus</a></span>
-        <span class="dj-sep">|</span>
-        <span>🌐 <a href="https://djigit.us" target="_blank" rel="noopener">djigit.us</a></span>
-      </div>
-
-      <div class="dj-footer-address">
-        📍 10505 Victory Blvd, Unit L, North Hollywood, CA 91606 —
-        <span>By appointment only</span>
-      </div>
-
-      <div class="dj-footer-row dj-footer-note">
-        Written communication preferred for clarity and records.
-      </div>
-
-      <div class="dj-footer-row dj-footer-copy">
-        © 2025 DJIGIT US LLC. All rights reserved.
-      </div>
-
-    </div>
-  </div>
-</footer>
-
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec";
-
-  const form = document.getElementById("creditAppForm");
-  const successBox = document.getElementById("formSuccess");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-
-    fetch(scriptURL, {
-      method: "POST",
-      body: formData
-    })
-    .then(function (response) {
-      successBox.style.display = "block";
-      form.reset();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    })
-    .catch(function (error) {
-      alert("Error submitting form. Please try again.");
-      console.error("Error!", error.message);
-    });
-  });
-</script>
-
 </body>
 </html>

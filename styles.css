@@ -1,6 +1,17 @@
-/* =========================
-   GLOBAL
-   ========================= */
+/* ====== БАЗОВЫЕ НАСТРОЙКИ ====== */
+
+:root {
+  --bg-main: #bfa47a;
+  --bg-card: #e7cfaa;
+  --bg-header: #3c4249;
+  --text-main: #222222;
+  --text-muted: #555555;
+  --accent: #e1251b;
+  --card-radius: 14px;
+  --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.18);
+  --max-width: 1100px;
+  --transition-fast: 0.2s ease;
+}
 
 *,
 *::before,
@@ -12,354 +23,314 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background: var(--bg-main);
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background-color: #c5aa7e; /* бежевый фон */
-  color: #2b2b2b;
-}
+/* ====== ХЕДЕР ====== */
 
-.container {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* =========================
-   HEADER
-   ========================= */
-
-.site-header {
-  background-color: #3c4249;
-  color: #ffffff;
+header {
   position: sticky;
   top: 0;
   z-index: 20;
+  background: var(--bg-header);
 }
 
 .header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
 }
 
-.logo-wrap {
+.header-logo {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
-.logo-image {
-  height: 36px;
+.header-logo img {
+  height: 28px;
   width: auto;
+  object-fit: contain;
 }
 
-/* Навигация */
+.header-logo-text {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f6f0e6;
+}
 
-.main-nav {
+.nav-links {
   display: flex;
-  gap: 24px;
+  gap: 26px;
+  font-size: 14px;
 }
 
-.nav-link {
-  color: #f5f5f5;
+.nav-links a {
+  color: #f6f0e6;
   text-decoration: none;
-  font-size: 15px;
   position: relative;
   padding-bottom: 4px;
 }
 
-.nav-link:hover {
-  color: #ffffff;
-}
-
-.nav-link.active {
-  color: #ffffff;
-}
-
-.nav-link.active::after {
+.nav-links a.active::after {
   content: "";
   position: absolute;
   left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%;
   height: 2px;
-  background-color: #e1251b;
+  background: var(--accent);
 }
 
-/* =========================
-   HERO (только картинка)
-   ========================= */
+/* ====== ХЕРО-БЛОК С КАРТИНКОЙ ====== */
 
 .hero {
-  height: 320px;
-  background-color: #000;
-  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  background-image: url("img/shapka.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-overlay {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.8)
+  );
 }
 
 .hero-inner {
-  width: 100%;
-  height: 100%;
-  background-image: url("img/shapka.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 50px 20px 40px;
+  text-align: left;
+  color: #f6f0e6;
 }
 
-/* =========================
-   SECTIONS
-   ========================= */
+.hero-tagline {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  max-width: 520px;
+  line-height: 1.45;
+  margin-bottom: 22px;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.hero-cta:hover {
+  background: #c51f18;
+  transform: translateY(-1px);
+}
+
+/* ====== ОБЩИЕ СЕКЦИИ ====== */
 
 .section {
-  padding: 48px 0;
+  padding: 60px 0;
 }
 
-.section-tight {
-  padding-top: 32px;
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .section-title {
   text-align: center;
-  font-size: 26px;
-  margin: 0 0 28px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #2f3439;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 32px;
 }
 
-/* =========================
-   CARDS LAYOUT (вариант B)
-   ========================= */
+/* ====== КАРТОЧКИ-СЕТКА ====== */
 
-.cards-row {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
 }
 
-/* отдельные ряды на 3 и на 4 карточки — ширина задаётся самой карточкой */
-.cards-row-3 .card,
-.cards-row-4 .card {
-  flex: 0 0 320px;
+/* Для блока "How it works" – более компактные карточки */
+.cards-grid.steps {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-/* Крупная карточка */
+/* Для Featured Inventory – одинаковая высота карточек */
+.cards-grid.inventory {
+  align-items: stretch;
+}
+
+/* ====== КАРТОЧКИ ====== */
 
 .card {
-  background-color: #e6d2b3;
-  border-radius: 18px;
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
-  padding: 26px 28px 24px;
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-soft);
+  padding: 20px 20px 22px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
-
-/* Чтобы все карточки были примерно одной высоты */
-.card-large {
-  min-height: 210px;
-}
-
-/* Иконки */
 
 .card-icon {
-  margin-bottom: 10px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 14px;
 }
 
 .card-icon img {
-  width: 70px;
-  height: 70px;
-  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-/* Заголовки внутри карточек */
+/* Заголовки / текст */
 
-.card h3 {
-  font-size: 16px;
-  margin: 6px 0 4px;
-  font-weight: 600;
-  color: #33363b;
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-/* Текст внутри карточек */
-
-.card p {
+.card-text {
   font-size: 13px;
-  line-height: 1.45;
-  margin: 0;
-  color: #414141;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
-/* =========================
-   FEATURED INVENTORY
-   ========================= */
+/* ====== ОСОБЕННО ДЛЯ INVENTORY ====== */
 
-.inventory-card {
-  min-height: 230px;
+.inventory-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.car-silhouette {
+.inventory-meta {
+  font-size: 12px;
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 
-.car-silhouette img {
-  width: 220px;
-  max-width: 100%;
-  height: auto;
-  display: block;
+.inventory-price {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: auto;
 }
 
-.inv-meta {
-  font-size: 13px;
-  line-height: 1.45;
-  margin-top: 4px;
-  color: #404040;
-}
-
-.inv-price {
-  margin-top: 6px;
-  font-weight: 600;
-  font-size: 15px;
-  color: #222222;
-}
+/* ====== ПОДПИСЬ ПОД INVENTORY ====== */
 
 .inventory-footnote {
-  margin-top: 18px;
+  max-width: var(--max-width);
+  margin: 14px auto 0;
+  padding: 0 20px 10px;
   font-size: 11px;
-  text-align: center;
-  color: #4b4031;
-}
-
-/* Кнопка Start Application под инвентарём */
-
-.cta-row {
-  margin-top: 26px;
+  color: var(--text-muted);
   text-align: center;
 }
 
-.btn-primary {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 999px;
-  background-color: #e1251b;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
-}
+/* ====== ФУТЕР ====== */
 
-.btn-primary:hover {
-  filter: brightness(1.05);
-}
-
-/* =========================
-   FOOTER
-   ========================= */
-
-.site-footer {
+.footer {
+  background: #333437;
+  color: #efefef;
+  padding: 22px 20px 26px;
   margin-top: 40px;
 }
 
-.dj-footer {
-  background-color: #3c4249;
-  color: #f5f5f5;
-  padding: 28px 16px 32px;
-}
-
-.dj-footer-inner {
-  max-width: 900px;
+.footer-inner {
+  max-width: var(--max-width);
   margin: 0 auto;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
-.dj-footer-title {
-  font-size: 16px;
+.footer-main {
   font-weight: 600;
-  margin-bottom: 6px;
-  letter-spacing: 0.04em;
+  margin-bottom: 4px;
 }
 
-.dj-footer-title span {
-  color: #e1251b;
+.footer-row {
+  margin-bottom: 4px;
 }
 
-.dj-footer-row {
-  margin: 2px 0;
-}
-
-.dj-footer-contact {
-  margin: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.dj-footer-contact a {
-  color: #ffffff;
+.footer-links a {
+  color: #f3e7cf;
   text-decoration: none;
 }
 
-.dj-footer-contact a:hover {
+.footer-links a:hover {
   text-decoration: underline;
 }
 
-.dj-sep {
-  opacity: 0.5;
-}
+/* ====== АДАПТИВ ====== */
 
-.dj-footer-address {
-  margin-top: 4px;
-}
-
-.dj-footer-note {
-  margin-top: 10px;
-  font-size: 12px;
-  opacity: 0.85;
-}
-
-.dj-footer-copy {
-  margin-top: 10px;
-  font-size: 11px;
-  opacity: 0.8;
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-
-@media (max-width: 900px) {
-  .cards-row-3 .card,
-  .cards-row-4 .card {
-    flex: 0 0 260px;
-  }
-}
-
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .header-inner {
-    padding: 8px 12px;
+    padding: 8px 14px;
   }
 
-  .main-nav {
+  .nav-links {
     gap: 16px;
+    font-size: 13px;
   }
 
-  .hero {
-    height: 240px;
+  .hero-inner {
+    padding: 32px 16px 26px;
   }
 
-  .cards-row-3 .card,
-  .cards-row-4 .card {
-    flex: 0 0 100%;
+  .hero-title {
+    font-size: 26px;
   }
 
-  .card {
-    padding: 22px 22px 20px;
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 42px 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 22px;
   }
 }

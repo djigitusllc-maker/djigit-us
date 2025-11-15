@@ -2,65 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>DJIGIT US — Application</title>
+  <title>Start Application — DJIGIT US</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page-wrapper">
+    <!-- HEADER -->
     <header class="top-bar">
       <div class="top-bar-inner">
-        <div class="brand">
+        <div class="logo">
           <img
             src="img/DJIGIT_LOGO-removebg-preview.png"
             alt="DJIGIT US — SPIRIT OF ROADS"
-            class="brand-logo"
+            class="logo-img"
           />
         </div>
-        <nav class="main-nav">
-          <a href="index.html">Home</a>
-          <a href="application.html" class="active">Application</a>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="application.html" class="nav-link nav-link--active">Application</a>
         </nav>
       </div>
     </header>
 
-    <main class="section">
-      <div class="form-wrapper">
-        <h1 class="section-title">Start Application</h1>
-        <p class="form-note">
-          Please fill out this short form so we can review your request and get
-          back to you with next steps.
-        </p>
-        <iframe
-          class="form-embed"
-          src="https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec"
-        ></iframe>
-      </div>
+    <!-- MAIN -->
+    <main class="page-main">
+      <section class="section section--application">
+        <div class="section-inner section-inner--narrow">
+          <h1 class="section-title section-title--center">
+            START APPLICATION
+          </h1>
+          <p class="section-lead section-lead--center">
+            Please fill out this short form so we can review your request and
+            get back to you with next steps.
+          </p>
+
+          <div class="form-frame-wrapper">
+            <iframe
+              class="form-frame"
+              src="https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec"
+              frameborder="0"
+              scrolling="yes"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-inner">
-        <div class="footer-brand">DJIGIT US — SPIRIT OF ROADS</div>
-        <div class="footer-row">
-          Independent dealership &amp; auto-broker · LA County, CA
+        <div class="footer-brand">
+          <div class="footer-name">DJIGIT US — <span>SPIRIT OF ROADS</span></div>
+          <div class="footer-desc">
+            Independent dealership & auto-broker · LA County, CA<br />
+            Clean-title cars · Broker service · DMV paperwork assistance
+          </div>
         </div>
-        <div class="footer-row">
-          Clean-title cars · Broker service · DMV paperwork assistance
-        </div>
-        <div class="footer-row">
-          <a href="mailto:djigitusllc@gmail.com">djigitusllc@gmail.com</a> ·
-          💬 Telegram:
-          <a href="https://t.me/djigitus" target="_blank">@djigitus</a>
-        </div>
-        <div class="footer-row">
-          10505 Victory Blvd, Unit L, North Hollywood, CA 91606 · By appointment
-          only
-        </div>
-        <div class="footer-row">
-          Written communication preferred for clarity and records.
-        </div>
-        <div class="footer-row footer-row--small">
-          © 2025 DJIGIT US LLC. All rights reserved.
+
+        <div class="footer-contacts">
+          <div class="footer-line">
+            📧 <a href="mailto:djigitusllc@gmail.com">djigitusllc@gmail.com</a>
+          </div>
+          <div class="footer-line">
+            💬 Telegram: <a href="https://t.me/djigitus" target="_blank">@djigitus</a>
+          </div>
+          <div class="footer-line">
+            📍 10505 Victory Blvd, Unit L, North Hollywood, CA 91606 — By appointment only
+          </div>
+          <div class="footer-note">
+            Written communication preferred for clarity and records.
+          </div>
+          <div class="footer-copy">
+            © 2025 DJIGIT US LLC. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>

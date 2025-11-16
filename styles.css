@@ -161,13 +161,13 @@ a:hover {
 }
 
 .card-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   margin-bottom: 12px;
 }
 
 .card-text {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
@@ -194,18 +194,18 @@ a:hover {
 
 .inventory-name {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 8px;
 }
 
 .inventory-meta {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
   margin-bottom: 8px;
 }
 
 .inventory-price {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 

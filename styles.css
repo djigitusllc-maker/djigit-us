@@ -340,21 +340,85 @@ a:hover {
   }
 
   /* WHAT WE DO / HOW IT WORKS / FEATURED INVENTORY:
-     одна колонка, карточка почти на всю ширину */
+     одна карточка в ряд, одинаковые отступы */
   .card-grid,
   .card-grid--four,
   .inventory-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 18px;
   }
 
+  /* единый стиль карточек для всех секций */
   .card,
   .inventory-card {
-    padding: 18px 14px 16px;
+    background-color: var(--bg-card);
     border-radius: 16px;
+    padding: 20px 16px 18px;
+    box-shadow: var(--shadow-soft);
     max-width: 480px;
     margin: 0 auto;
+    text-align: center;
   }
+
+  .card-icon,
+  .inventory-car {
+    height: 80px;
+    margin-bottom: 12px;
+  }
+
+  .card-title,
+  .inventory-name {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .card-text,
+  .inventory-meta,
+  .inventory-price {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .inventory-note {
+    font-size: 11px;
+    padding: 0 8px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* шапка — логотип сверху, меню ниже */
+  .top-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .brand-logo {
+    height: 34px;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 14px;
+    font-size: 14px;
+  }
+
+  /* футер — компактнее */
+  .footer {
+    padding: 22px 12px 16px;
+  }
+
+  .footer-inner {
+    font-size: 11px;
+  }
+
+  .footer-row--small {
+    font-size: 10px;
+  }
+}
 
   .card-icon,
   .inventory-car {

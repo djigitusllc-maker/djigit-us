@@ -347,3 +347,14 @@ a:hover {
     border-radius: 16px;
   }
 }
+/* Фикс: сделать Featured Inventory по ширине как остальные карточки */
+.inventory-grid {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto;
+}
+
+.inventory-card {
+  width: 100% !important;
+  max-width: none !important;
+}

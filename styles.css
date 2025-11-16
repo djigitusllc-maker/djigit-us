@@ -330,26 +330,24 @@ a:hover {
   padding: 32px 12px 56px;
 }
 
-/* Узкий контейнер для текста + iframe */
-.section-inner.section-inner--narrow {
-  max-width: 560px;      /* ширина карточки на десктопе */
-  margin: 0 auto;
+/* Секция с заявкой – широкая */
+.section--application .section-inner--wide {
+  max-width: 1100px; /* сделай сколько хочешь: 1000–1200 px */
 }
 
-/* Обёртка вокруг iframe с формой */
+/* Обёртка для iframe */
 .form-frame-wrapper {
-  max-width: 560px;      /* совпадает с текстом */
-  margin: 0 auto;
+  width: 100%;
 }
 
-/* Сам iframe с формой */
+/* Сам iframe во всю ширину контейнера */
 .form-frame {
   display: block;
-  width: 100%;           /* на всю ширину обёртки */
-  min-height: 1250px;
-  border: none;
-  border-radius: 18px;
-  box-shadow: var(--shadow-soft);
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  /* при необходимости подгони высоту */
+  min-height: 900px;
 }
 
 /* ---- Мобильная версия ---- */

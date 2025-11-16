@@ -68,7 +68,7 @@ a:hover {
 /* ===== HEADER ===== */
 
 .top-bar {
-  background-color: var(--bg-header); /* светлый бежевый */
+  background-color: var(--bg-header);
   color: var(--text-main);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
 }
@@ -83,7 +83,7 @@ a:hover {
 }
 
 .brand-logo {
-  height: 40px;            /* размер логотипа в хедере */
+  height: 40px;
   display: block;
 }
 
@@ -96,14 +96,12 @@ a:hover {
   font-size: 15px;
 }
 
-/* Обычные ссылки меню: Home / Application */
 .main-nav .nav-link {
   position: relative;
   padding-bottom: 4px;
   font-weight: 500;
 }
 
-/* Красная линия при ховере */
 .main-nav .nav-link::after {
   content: "";
   position: absolute;
@@ -119,12 +117,11 @@ a:hover {
   width: 100%;
 }
 
-/* Активная страница */
 .main-nav .nav-link--active::after {
   width: 100%;
 }
 
-/* Кнопка WhatsApp в шапке */
+/* WhatsApp button */
 .main-nav-link--whatsapp {
   padding: 6px 16px;
   border-radius: 999px;
@@ -138,7 +135,6 @@ a:hover {
   line-height: 1;
 }
 
-/* У кнопки убираем красную линию подчеркивания */
 .main-nav-link--whatsapp::after {
   display: none;
 }
@@ -147,14 +143,14 @@ a:hover {
   filter: brightness(1.05);
 }
 
-/* ===== HERO IMAGE (ТОЛЬКО НА ГЛАВНОЙ) ===== */
+/* ===== HERO IMAGE (HOME) ===== */
 
 .hero {
-  background-color: var(--bg-main); /* тот же фон, что и у страницы */
+  background-color: var(--bg-main);
 }
 
 .hero-inner {
-  width: 100%;          /* шапка тянется на всю ширину, без чёрных полей */
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -176,7 +172,7 @@ a:hover {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-/* ЕДИНЫЙ стиль для всех карточек на сайте */
+/* единый стиль карточек: и обычных, и инвентаря */
 .card,
 .inventory-card {
   background-color: var(--bg-card);
@@ -208,16 +204,6 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-}
-
-/* ЕДИНЫЙ стиль для всех карточек на сайте */
-.card,
-.inventory-card {
-  background-color: var(--bg-card);
-  border-radius: var(--radius-card);
-  padding: 24px 18px 22px;
-  text-align: center;
-  box-shadow: var(--shadow-soft);
 }
 
 .inventory-car {
@@ -287,7 +273,7 @@ a:hover {
 /* Общие отступы секции Application */
 .section.section--application {
   padding: 32px 12px 56px;
-  overflow-x: hidden; /* чтобы ничего не вылезало по горизонтали */
+  overflow-x: hidden;
 }
 
 /* Внутренний контейнер секции – широкий */
@@ -299,7 +285,7 @@ a:hover {
 /* Обёртка для iframe */
 .form-frame-wrapper {
   width: 100%;
-  max-width: 1100px;      /* ШИРОКАЯ форма на десктопе */
+  max-width: 1100px;
   margin: 0 auto 40px;
 }
 
@@ -312,10 +298,11 @@ a:hover {
   border: none;
   border-radius: 18px;
   box-shadow: var(--shadow-soft);
-  min-height: 1300px;     /* чтобы внутри не было вертикального скролла */
+  min-height: 1300px;
 }
 
-/* Мобилка: форма почти на всю ширину экрана */
+/* ===== MOBILE: APPLICATION (<= 600px) ===== */
+
 @media (max-width: 600px) {
   .section.section--application {
     padding: 24px 8px 40px;
@@ -326,9 +313,12 @@ a:hover {
     margin: 0 auto 32px;
   }
 }
+
 /* ===== MOBILE: HOME CARDS (<= 600px) ===== */
+
 @media (max-width: 600px) {
 
+  /* секции на главной чуть компактнее */
   .section {
     padding: 32px 12px;
   }
@@ -355,142 +345,5 @@ a:hover {
     max-width: 480px;
     margin: 0 auto;
     border-radius: 16px;
-  }
-}
-
-  /* WHAT WE DO / HOW IT WORKS / FEATURED INVENTORY:
-     одна карточка в ряд, одинаковые отступы */
-  .card-grid,
-  .card-grid--four,
-  .inventory-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  /* единый стиль карточек для всех секций */
-  .card,
-  .inventory-card {
-    background-color: var(--bg-card);
-    border-radius: 16px;
-    padding: 20px 16px 18px;
-    box-shadow: var(--shadow-soft);
-    max-width: 480px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .card-icon,
-  .inventory-car {
-    height: 100px;
-    margin-bottom: 12px;
-  }
-
-  .card-title,
-  .inventory-name {
-    font-size: 15px;
-    margin-bottom: 8px;
-  }
-
-  .card-text,
-  .inventory-meta,
-  .inventory-price {
-    font-size: 12px;
-    line-height: 1.4;
-  }
-
-  .inventory-note {
-    font-size: 11px;
-    padding: 0 8px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* шапка — логотип сверху, меню ниже */
-  .top-bar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 10px 12px;
-  }
-
-  .brand-logo {
-    height: 34px;
-  }
-
-  .main-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 14px;
-    font-size: 14px;
-  }
-
-  /* футер — компактнее */
-  .footer {
-    padding: 22px 12px 16px;
-  }
-
-  .footer-inner {
-    font-size: 11px;
-  }
-
-  .footer-row--small {
-    font-size: 10px;
-  }
-}
-
-  .card-icon,
-  .inventory-car {
-    height: 80px;
-    margin-bottom: 12px;
-  }
-
-  .card-title,
-  .inventory-name {
-    font-size: 15px;
-    margin-bottom: 8px;
-  }
-
-  .card-text,
-  .inventory-meta,
-  .inventory-price {
-    font-size: 12px;
-  }
-
-  .inventory-note {
-    font-size: 11px;
-    padding: 0 8px;
-  }
-
-  /* шапка — логотип сверху, меню ниже, не впритык */
-  .top-bar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 10px 12px;
-  }
-
-  .brand-logo {
-    height: 34px;
-  }
-
-  .main-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 14px;
-    font-size: 14px;
-  }
-
-  /* футер — компактнее */
-  .footer {
-    padding: 22px 12px 16px;
-  }
-
-  .footer-inner {
-    font-size: 11px;
-  }
-
-  .footer-row--small {
-    font-size: 10px;
   }
 }

@@ -332,7 +332,7 @@ a:hover {
 
 /* Секция с заявкой – широкая */
 .section--application .section-inner--wide {
-  max-width: 1100px; /* сделай сколько хочешь: 1000–1200 px */
+  max-width: 1400px; /* сделай сколько хочешь: 1000–1200 px */
 }
 
 /* Обёртка для iframe */

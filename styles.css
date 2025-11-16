@@ -87,36 +87,24 @@ a:hover {
   display: block;
 }
 
+/* ===== HEADER NAV ===== */
+
 .main-nav {
   display: flex;
+  align-items: center;
   gap: 20px;
   font-size: 15px;
 }
 
-.main-nav a {
+/* Обычные ссылки меню: Home / Application */
+.main-nav .nav-link {
   position: relative;
   padding-bottom: 4px;
   font-weight: 500;
 }
-/* WhatsApp button in header */
-.main-nav-link--whatsapp {
-  padding: 6px 14px;
-  border-radius: 999px;
-  background-color: var(--accent);
-  color: var(--text-light);
-  font-weight: 500;
-  text-decoration: none;
-}
 
-.main-nav-link--whatsapp::after {
-  /* убираем красную подчеркивающую линию у кнопки */
-  display: none;
-}
-
-.main-nav-link--whatsapp:hover {
-  filter: brightness(1.05);
-}
-.main-nav a::after {
+/* Красная линия при ховере */
+.main-nav .nav-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -127,13 +115,36 @@ a:hover {
   transition: width 0.2s ease-out;
 }
 
-.main-nav a:hover::after {
+.main-nav .nav-link:hover::after {
   width: 100%;
 }
 
-.main-nav a.nav-link--active::after,
-.main-nav a.active::after {
+/* Активная страница */
+.main-nav .nav-link--active::after {
   width: 100%;
+}
+
+/* Кнопка WhatsApp в шапке */
+.main-nav-link--whatsapp {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: var(--text-light);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* У кнопки убираем красную линию подчеркивания */
+.main-nav-link--whatsapp::after {
+  display: none;
+}
+
+.main-nav-link--whatsapp:hover {
+  filter: brightness(1.05);
 }
 
 /* ===== HERO IMAGE (ТОЛЬКО НА ГЛАВНОЙ) ===== */

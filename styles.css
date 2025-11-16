@@ -281,13 +281,13 @@ a:hover {
 /* ===== FORM PAGE (application.html) ===== */
 
 .form-wrapper {
-  max-width: 1120px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 40px 24px 80px;
 }
 
 .form-note {
-  max-width: 640px;
+  max-width: 140px;
   font-size: 13px;
   line-height: 1.5;
   margin: 0 auto 18px;
@@ -296,7 +296,7 @@ a:hover {
 
 .form-embed {
   width: 100%;
-  min-height: 1100px;
+  min-height: 1400px;
   border: none;
   border-radius: 12px;
   box-shadow: var(--shadow-soft);

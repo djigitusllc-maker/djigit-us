@@ -323,3 +323,45 @@ a:hover {
     padding-inline: 0;
   }
 }
+/* === APPLICATION PAGE: WIDER FORM CARD, ESPECIALLY ON MOBILE === */
+
+/* Общие отступы секции Application */
+.section.section--application {
+  padding: 32px 12px 56px;
+}
+
+/* Узкий контейнер для текста + iframe */
+.section-inner.section-inner--narrow {
+  max-width: 560px;      /* ширина карточки на десктопе */
+  margin: 0 auto;
+}
+
+/* Обёртка вокруг iframe с формой */
+.form-frame-wrapper {
+  max-width: 560px;      /* совпадает с текстом */
+  margin: 0 auto;
+}
+
+/* Сам iframe с формой */
+.form-frame {
+  display: block;
+  width: 100%;           /* на всю ширину обёртки */
+  min-height: 1250px;
+  border: none;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---- Мобильная версия ---- */
+@media (max-width: 600px) {
+  /* уменьшаем боковые отступы секции, чтобы карточка была шире */
+  .section.section--application {
+    padding: 24px 8px 40px;
+  }
+
+  /* на мобильной — никаких ограничений по max-width */
+  .section-inner.section-inner--narrow,
+  .form-frame-wrapper {
+    max-width: 100%;
+  }
+}

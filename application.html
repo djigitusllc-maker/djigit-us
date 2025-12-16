@@ -45,6 +45,7 @@
   <div class="section-inner section-inner--wide">
     <div class="form-frame-wrapper">
       <iframe
+        id="creditAppFrame"
         class="form-frame"
         src="https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec"
         frameborder="0"
@@ -52,6 +53,23 @@
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
+      <script>
+  (function () {
+    const frame = document.getElementById("creditAppFrame");
+    if (!frame) return;
+
+    window.addEventListener("message", (event) => {
+      // принимаем только сообщения от script.google.com
+      if (!event.origin || !event.origin.includes("script.google.com")) return;
+
+      const data = event.data || {};
+      if (data.type === "IFRAME_HEIGHT" && Number.isFinite(data.height)) {
+        frame.style.height = (data.height + 20) + "px"; // +20 запас снизу
+      }
+    });
+  })();
+</script>
+
     </div>
   </div>
 </section>

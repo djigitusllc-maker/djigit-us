@@ -60,7 +60,11 @@
 
     window.addEventListener("message", (event) => {
       // принимаем только сообщения от script.google.com
-      if (!event.origin || !event.origin.includes("script.google.com")) return;
+     if (
+  !event.origin ||
+  (!event.origin.includes("script.google.com") &&
+   !event.origin.includes("script.googleusercontent.com"))
+) return;
 
       const data = event.data || {};
       if (data.type === "IFRAME_HEIGHT" && Number.isFinite(data.height)) {

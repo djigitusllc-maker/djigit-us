@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Credit Application — DJIGIT US</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="icon" type="image/png" href="img/siluet.png">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- HEADER -->
+   <header class="top-bar">
+  <div class="top-bar-inner">
+    <a href="index.html">
+      <img
+        src="img/DJIGIT_LOGO-removebg-preview.png"
+        alt="DJIGIT US — SPIRIT OF ROADS"
+        class="brand-logo"
+      />
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="application.html" class="nav-link nav-link--active">Application</a>
+      <a
+        href="https://wa.me/18185352313"
+        class="nav-link main-nav-link--whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+    <!-- MAIN -->
+    <main class="page-main">
+      <section class="section section--application">
+        <div class="section-inner section-inner--narrow">
+
+          <div class="form-frame-wrapper">
+  <section class="section section--application">
+  <div class="section-inner section-inner--wide">
+    <div class="form-frame-wrapper">
+      <iframe
+        id="creditAppFrame"
+        class="form-frame"
+        src="https://script.google.com/macros/s/AKfycbzlFOFJsr5CNlwVGq-4wHuhu7mU4s80B-5gqNz6xuW5af50yYSx2RHSOt1QmphOeTv4tA/exec"
+        frameborder="0"
+        scrolling="no"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <script>
+  (function () {
+    const frame = document.getElementById("creditAppFrame");
+    if (!frame) return;
+
+    window.addEventListener("message", (event) => {
+      // принимаем только сообщения от script.google.com
+     if (
+  !event.origin ||
+  (!event.origin.includes("script.google.com") &&
+   !event.origin.includes("script.googleusercontent.com"))
+) return;
+
+      const data = event.data || {};
+      if (data.type === "IFRAME_HEIGHT" && Number.isFinite(data.height)) {
+        frame.style.height = (data.height + 20) + "px"; // +20 запас снизу
+      }
+    });
+  })();
+</script>
+
+    </div>
+  </div>
+</section>
+</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      DJIGIT US — SPIRIT OF ROADS
+    </div>
+
+    <div class="footer-row">
+      Independent dealership & auto-broker · LA County, CA
+    </div>
+    <div class="footer-row">
+      Clean-title cars · Broker service · DMV paperwork assistance
+    </div>
+
+    <div class="footer-row">
+      📧 <a href="mailto:djigitusllc@gmail.com">djigitusllc@gmail.com</a>
+      &nbsp;·&nbsp;
+      💬 <a href="https://wa.me/18185352313" target="_blank" rel="noopener">
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-row footer-row--small">
+      10505 Victory Blvd, Unit L, North Hollywood, CA 91606 · By appointment only
+    </div>
+
+    <div class="footer-row footer-row--small">
+      Written communication preferred for clarity and records.
+    </div>
+
+    <div class="footer-row footer-row--small">
+      © 2025 DJIGIT US LLC. All rights reserved.
+    </div>
+  </div>
+</footer>
+  </div>
+</body>
+</html>

@@ -108,8 +108,15 @@
       <input type="text" name="Name" required>
 
       <label>Телефон</label>
-      <input type="tel" name="Phone" required>
-
+<input
+  type="tel"
+  name="Phone"
+  required
+  inputmode="numeric"
+  pattern="[0-9]{10}"
+  placeholder="Например: 8185551234"
+  title="Введите 10-значный номер телефона (только цифры)"
+>
       <label>Кредитный рейтинг</label>
       <select name="Credit Score" required>
         <option value="">Выберите</option>

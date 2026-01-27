@@ -114,18 +114,122 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
 
 <body>
 
-  <div class="page-wrapper">
+ <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Подбор авто в лизинг | DJIGIT US</title>
 
-    <img src="../New LOGO.jpg" alt="DJIGIT US" class="logo">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background:#f7f7f7;
+      margin:0;
+      padding:0;
+    }
+    .container {
+      max-width:520px;
+      margin:40px auto;
+      background:#fff;
+      padding:24px;
+      border-radius:8px;
+      box-shadow:0 2px 10px rgba(0,0,0,.08);
+    }
+    h1 { font-size:22px; margin-bottom:10px; }
+    p { color:#555; }
 
-    <div class="form-wrapper">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSePjYC505wxmdWUIs7doI3v38aXX4_udu-ey5fvxzT_TMCJ8g/viewform?embedded=true"
-        height="1650">
-      </iframe>
-    </div>
+    label { display:block; margin-top:16px; font-weight:600; }
+    input, select, button {
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      font-size:16px;
+    }
+    button {
+      margin-top:24px;
+      background:#0a66ff;
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    button:disabled { opacity:.6; }
 
-  </div>
+    .status { margin-top:16px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Подбор авто в лизинг</h1>
+  <p>Предварительная заявка. Не влияет на кредитный рейтинг.</p>
+
+  <form id="leadForm">
+    <label>Имя</label>
+    <input name="name" required>
+
+    <label>Телефон</label>
+    <input name="phone" required placeholder="(XXX) XXX-XXXX">
+
+    <label>Email</label>
+    <input name="email" type="email">
+
+    <label>Комфортный платёж ($)</label>
+    <select name="payment">
+      <option value="">Выберите</option>
+      <option>до $300</option>
+      <option>$300–400</option>
+      <option>$400–500</option>
+      <option>$500+</option>
+    </select>
+
+    <label>Down Payment</label>
+    <select name="downpayment">
+      <option value="">Выберите</option>
+      <option>$0</option>
+      <option>$1,000–2,000</option>
+      <option>$3,000–5,000</option>
+      <option>$5,000+</option>
+    </select>
+
+    <button type="submit">Отправить заявку</button>
+    <div class="status" id="status"></div>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById('leadForm');
+const status = document.getElementById('status');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  status.textContent = 'Отправка…';
+
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  try {
+    const res = await fetch('PASTE_WEB_APP_URL_HERE', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const json = await res.json();
+
+    if (json.status === 'ok') {
+      window.location.href = '/lease/thank-you.html';
+    } else {
+      status.textContent = 'Ошибка отправки';
+    }
+  } catch (err) {
+    status.textContent = 'Сервер недоступен';
+  }
+});
+</script>
+
+</body>
+</html>
 
 </body>
 </html>

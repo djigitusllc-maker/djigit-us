@@ -162,42 +162,62 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
 <body>
 
 <div class="container">
-  <h1>Подбор авто в лизинг</h1>
-  <p>Предварительная заявка. Не влияет на кредитный рейтинг.</p>
+  <div class="logo">
+    <img src="/New LOGO.jpg" alt="DJIGIT US">
+  </div>
 
-  <form id="leadForm">
-    <label>Имя</label>
-    <input name="name" required>
+  <h2>Подбор авто в лизинг</h2>
+  <p class="subtitle">Предварительная заявка. Не влияет на кредитный рейтинг.</p>
 
-    <label>Телефон</label>
-    <input name="phone" required placeholder="(XXX) XXX-XXXX">
+  <form id="leaseForm">
+    <div class="row">
+      <div class="field short">
+        <label>Имя</label>
+        <input type="text" name="name" required>
+      </div>
 
-    <label>Email</label>
-    <input name="email" type="email">
+      <div class="field short">
+        <label>Телефон</label>
+        <input type="tel" name="phone" placeholder="(XXX) XXX-XXXX" required>
+      </div>
+    </div>
 
-    <label>Комфортный платёж ($)</label>
-    <select name="payment">
-      <option value="">Выберите</option>
-      <option>до $300</option>
-      <option>$300–400</option>
-      <option>$400–500</option>
-      <option>$500+</option>
-    </select>
+    <div class="field">
+      <label>Комфортный ежемесячный платёж ($)</label>
+      <select name="payment" required>
+        <option value="">Выберите</option>
+        <option>до $300</option>
+        <option>$300–399</option>
+        <option>$400–499</option>
+        <option>$500+</option>
+      </select>
+    </div>
 
-    <label>Down Payment</label>
-    <select name="downpayment">
-      <option value="">Выберите</option>
-      <option>$0</option>
-      <option>$1,000–2,000</option>
-      <option>$3,000–5,000</option>
-      <option>$5,000+</option>
-    </select>
+    <div class="field">
+      <label>Первоначальный взнос (Down Payment)</label>
+      <select name="downpayment" required>
+        <option value="">Выберите</option>
+        <option>$0-$1,000</option>
+        <option>$1,000–2,000</option>
+        <option>$2,000–3,000</option>
+        <option>$3,000+</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Примерный кредитный рейтинг</label>
+      <select name="credit_score" required>
+        <option value="">Выберите</option>
+        <option>Плохой (ниже 580)</option>
+        <option>Средний (580–650)</option>
+        <option>Хороший (650–720)</option>
+        <option>Отличный (720+)</option>
+      </select>
+    </div>
 
     <button type="submit">Отправить заявку</button>
-    <div class="status" id="status"></div>
   </form>
 </div>
-
 <script>
 const form = document.getElementById('leadForm');
 const status = document.getElementById('status');

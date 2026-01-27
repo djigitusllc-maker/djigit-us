@@ -7,7 +7,7 @@
 
   <style>
     *,
-    *::before,
+    *::before
     *::after {
       box-sizing: border-box;
     }
@@ -81,6 +81,16 @@
       font-size: 12px;
       color: #666;
     }
+    .form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form-wrapper iframe {
+  max-width: 720px;
+  width: 100%;
+  border: none;
+}
   </style>
  <!-- Meta Pixel Code -->
 <script>
@@ -102,8 +112,11 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
 </head>
 
 <body>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSePjYC505wxmdWUIs7doI3v38aXX4_udu-ey5fvxzT_TMCJ8g/viewform?embedded=true" width="640" height="1614" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
+  <div class="form-wrapper">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSePjYC505xwmdWUTs7doI3v38aXX4_udu-ey5fvxzT_TMCJ8g/viewform?embedded=true"
+      height="1650">
+    </iframe>
   </div>
 </body>
 </html>

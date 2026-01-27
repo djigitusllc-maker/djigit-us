@@ -171,9 +171,8 @@
         </select>
       </div>
 
-      <button type="submit">Отправить заявку</button>
-
-      <div id="status" class="status"></div>
+      <button type="submit">Подобрать варианты авто</button>
+<div id="status" style="margin-top:12px;font-size:14px;color:#d00;"></div>
 
     </form>
   </div>
@@ -207,6 +206,35 @@
       }
     });
   </script>
+<script>
+  // submit формы (fetch)
+</script>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const phoneInput = document.getElementById('phone');
+  if (!phoneInput) return;
+
+  phoneInput.addEventListener('input', () => {
+    let digits = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+
+    let formatted = '';
+    if (digits.length > 0) {
+      formatted = '(' + digits.slice(0, 3);
+    }
+    if (digits.length >= 4) {
+      formatted += ') ' + digits.slice(3, 6);
+    }
+    if (digits.length >= 7) {
+      formatted += '-' + digits.slice(6, 10);
+    }
+
+    phoneInput.value = formatted;
+  });
+});
+</script>
+
+</body>
+</html>
 </body>
 </html>

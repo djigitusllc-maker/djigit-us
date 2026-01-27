@@ -28,12 +28,19 @@
     }
 
     .logo {
-      display: block;
-      max-width: 140px;
-      width: 100%;
-      height: auto;
-      margin: 0 auto 20px;
-    }
+  display: block;
+  max-width: 140px;
+  margin: 0 auto 24px auto;
+}
+    .page-wrapper {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+    .form-wrapper iframe {
+  width: 100%;
+  border: none;
+}
 
     h1 {
       margin: 0 0 8px;
@@ -85,12 +92,6 @@
   display: flex;
   justify-content: center;
 }
-
-.form-wrapper iframe {
-  max-width: 720px;
-  width: 100%;
-  border: none;
-}
   </style>
  <!-- Meta Pixel Code -->
 <script>
@@ -112,16 +113,19 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
 </head>
 
 <body>
-  <div class="form-wrapper">
-      <div style="width:100%; text-align:center; margin:24px 0;">
-    <img src="/New LOGO.jpg"
-         alt="DJIGIT US"
-         style="max-width:140px; width:100%; height:auto;">
+
+  <div class="page-wrapper">
+
+    <img src="../New LOGO.jpg" alt="DJIGIT US" class="logo">
+
+    <div class="form-wrapper">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSePjYC505wxmdWUIs7doI3v38aXX4_udu-ey5fvxzT_TMCJ8g/viewform?embedded=true"
+        height="1650">
+      </iframe>
+    </div>
+
   </div>
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSePjYC505wxmdWUIs7doI3v38aXX4_udu-ey5fvxzT_TMCJ8g/viewform?embedded=true"
-      height="1650">
-    </iframe>
-  </div>
+
 </body>
 </html>

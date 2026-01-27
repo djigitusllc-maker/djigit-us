@@ -190,7 +190,6 @@
       try {
         const res = await fetch('https://script.google.com/macros/s/AKfycby1Wq_GjJrd9gouK8eC0glqP_UM08PYjDIdnseKB-EF2GWprhKNeBCL-lEi_TDCRjTYkw/exec', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
 
@@ -206,9 +205,6 @@
       }
     });
   </script>
-<script>
-  // submit формы (fetch)
-</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -234,7 +230,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-</body>
-</html>
 </body>
 </html>

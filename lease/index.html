@@ -189,7 +189,7 @@
       const data = Object.fromEntries(new FormData(form).entries());
 
       try {
-        const res = await fetch('PASTE_WEB_APP_URL_HERE', {
+        const res = await fetch('https://script.google.com/macros/s/AKfycby1Wq_GjJrd9gouK8eC0glqP_UM08PYjDIdnseKB-EF2GWprhKNeBCL-lEi_TDCRjTYkw/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)

@@ -177,34 +177,34 @@
     </form>
   </div>
 
-  <script>
-    const form = document.getElementById('leaseForm');
-    const status = document.getElementById('status');
+<script>
+const form = document.getElementById('leaseForm');
+const status = document.getElementById('status');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = 'Отправка…';
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  status.textContent = 'Отправка…';
 
-      const data = Object.fromEntries(new FormData(form).entries());
-
-      try {
-        const res = await fetch('https://script.googleusercontent.com/macros/s/AKfycby.../exec', {
-          method: 'POST',
-          body: JSON.stringify(data)
-        });
-
-        const json = await res.json();
-
-        if (json.status === 'ok') {
-          window.location.href = '/lease/thank-you.html';
-        } else {
-          status.textContent = 'Ошибка отправки';
-        }
-      } catch (err) {
-        status.textContent = 'Сервер недоступен';
+  try {
+    const res = await fetch(
+      'https://script.google.com/macros/s/AKfycby1Wq_GjJrd9gouK8eC0glqP_UM08PYjDIdnseKB-EF2GWprhKNeBCL-lEi_TDCRjTYkw/exec',
+      {
+        method: 'POST',
+        body: new FormData(form)
       }
-    });
-  </script>
+    );
+
+    if (res.ok) {
+      window.location.href = '/lease/thank-you.html';
+    } else {
+      status.textContent = 'Ошибка отправки';
+    }
+
+  } catch (e) {
+    status.textContent = 'Сервер недоступен';
+  }
+});
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

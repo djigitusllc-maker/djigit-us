@@ -126,7 +126,11 @@
       </p>
     </div>
 
-    <form id="leaseForm">
+   <form
+  id="leaseForm"
+  action="https://script.google.com/macros/s/AKfycbyHSujm3Z-QVSlyNkilacbJ8ij0KCxUAsLU7BhpWdyENgPSVJcoERH6h1k63EPQFvgHrA/exec"
+  method="POST"
+>
 
       <div class="field">
         <label for="name">Имя</label>
@@ -176,35 +180,6 @@
 
     </form>
   </div>
-
-<script>
-const form = document.getElementById('leaseForm');
-const status = document.getElementById('status');
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  status.textContent = 'Отправка…';
-
-  try {
-    const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbyHSujm3Z-QVSlyNkilacbJ8ij0KCxUAsLU7BhpWdyENgPSVJcoERH6h1k63EPQFvgHrA/exec',
-      {
-        method: 'POST',
-        body: new FormData(form)
-      }
-    );
-
-    if (res.ok) {
-      window.location.href = '/lease/thank-you.html';
-    } else {
-      status.textContent = 'Ошибка отправки';
-    }
-
-  } catch (e) {
-    status.textContent = 'Сервер недоступен';
-  }
-});
-</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

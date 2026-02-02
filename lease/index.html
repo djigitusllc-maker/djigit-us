@@ -187,7 +187,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!phoneInput) return;
 
   phoneInput.addEventListener('input', () => {
-    let digits = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+    let digits = phoneInput.value.replace(/\D/g, '');
+
+    // 👉 если ввели +1 или 1 в начале — убираем
+    if (digits.length > 10 && digits.startsWith('1')) {
+      digits = digits.slice(1);
+    }
+
+    // жестко ограничиваем 10 цифрами
+    digits = digits.slice(0, 10);
 
     let formatted = '';
     if (digits.length > 0) {

@@ -227,19 +227,21 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
 </footer>
   </div>
   <script>
-  const burger = document.querySelector('.burger');
+  const burger = document.querySelector('button.burger');
   const menu = document.getElementById('mobileMenu');
 
   if (burger && menu) {
     burger.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('open');
+      burger.classList.toggle('is-open', isOpen);
       burger.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // закрывать меню при клике по ссылке
+    // close menu when clicking any link
     menu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         menu.classList.remove('open');
+        burger.classList.remove('is-open');
         burger.setAttribute('aria-expanded', 'false');
       });
     });

@@ -226,5 +226,24 @@ src="https://www.facebook.com/tr?id=1385432075932608&ev=PageView&noscript=1"
   </div>
 </footer>
   </div>
+  <script>
+  const burger = document.querySelector('.burger');
+  const menu = document.getElementById('mobileMenu');
+
+  if (burger && menu) {
+    burger.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // закрывать меню при клике по ссылке
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
 </body>
 </html>

@@ -423,3 +423,36 @@ a:hover {
     text-decoration:none;
   }
 }
+/* === FIX: Mobile menu must never show on desktop === */
+#mobileMenu { 
+  display: none !important;
+}
+
+/* Desktop: show normal links, hide mobile controls */
+@media (min-width: 769px){
+  .nav-links { display: flex !important; }
+  .nav-mobile { display: none !important; }
+}
+
+/* Mobile: hide desktop links, show burger/WA, dropdown only when open */
+@media (max-width: 768px){
+  .nav-links { display: none !important; }
+  .nav-mobile { display: flex !important; }
+
+  #mobileMenu.open{
+    display: block !important;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 9999;
+    background: #c7b07e; /* фон шапки, чтобы не просвечивало */
+    padding: 10px 14px 14px;
+  }
+
+  #mobileMenu a{
+    display: block;
+    padding: 12px 6px;
+    text-decoration: none;
+  }
+}

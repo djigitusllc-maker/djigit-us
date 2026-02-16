@@ -358,3 +358,68 @@ a:hover {
   width: 100% !important;
   max-width: none !important;
 }
+.site-header { position: relative; }
+
+.nav-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding: 10px 14px;
+}
+
+.brand img{ height:32px; width:auto; display:block; }
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.nav-link{ text-decoration:none; }
+.nav-wa{
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius: 999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.nav-mobile{ display:none; align-items:center; gap:10px; }
+
+.burger{
+  width:44px; height:44px;
+  border:0; background:transparent;
+  display:flex; flex-direction:column;
+  justify-content:center; gap:6px;
+  padding:10px;
+}
+.burger span{
+  height:2px; width:100%;
+  display:block;
+  background: currentColor;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .nav-links{ display:none; }
+  .nav-mobile{ display:flex; }
+
+  .mobile-menu{
+    display:none;
+    position:absolute;
+    left:0; right:0;
+    top:100%;
+    padding:10px 14px 14px;
+    background: inherit; /* если header имеет фон */
+    z-index: 1000;
+  }
+  .mobile-menu.open{ display:block; }
+
+  .mobile-link{
+    display:block;
+    padding:12px 6px;
+    text-decoration:none;
+  }
+}

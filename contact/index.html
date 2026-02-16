@@ -46,6 +46,29 @@
   }
   .primary{ background:#000; color:#fff; }
   .secondary{ background:#f2f2f2; color:#000; }
+  /* === Mobile scroll jump killer (override global styles) === */
+html, body {
+  height: auto !important;
+  min-height: 0 !important;
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
+  overflow-anchor: none !important; /* prevents "auto jump" in Chrome */
+}
+
+body {
+  display: block !important;        /* kill any flex centering from global css */
+}
+
+.page-content {
+  height: auto !important;
+  min-height: 0 !important;
+  display: block !important;
+  scroll-snap-align: none !important;
+}
+
+.card, footer, .footer, .footer-inner, .footer-row {
+  scroll-snap-align: none !important;
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>

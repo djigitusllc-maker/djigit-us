@@ -116,10 +116,10 @@ $("searchForm").addEventListener("submit", async (event) => {
     ` · подходящих дилеров: ${selected.length}`;
   try {
     searchController = new AbortController();
-    activeSearch = { status:"running",selected:selected.length,checked:0,failed:[],exact:[],close:[],query:{ freeText:$("freeText").value,filters } };
+    activeSearch = { status:"running",selected:selected.length,checked:0,failed:[],exact:[],close:[],alternatives:[],query:{ freeText:$("freeText").value,filters,includeAlternatives:true } };
     $("progress").hidden = false; $("cancel").hidden = false; renderProgress(activeSearch);
     const hardTimer = setTimeout(() => searchController.abort(), 120000);
-    await runQueue(selected, { freeText:$("freeText").value,filters }, searchController.signal);
+    await runQueue(selected, activeSearch.query, searchController.signal);
     clearTimeout(hardTimer);
     if (activeSearch.status === "running") activeSearch.status = searchController.signal.aborted ? "partial" : "completed";
     finish(activeSearch);
@@ -143,6 +143,7 @@ async function runQueue(dealers, query, signal) {
         });
         activeSearch.exact.push(...result.exact);
         activeSearch.close.push(...result.close);
+        activeSearch.alternatives.push(...(result.alternatives ?? []));
       } catch (error) {
         activeSearch.failed.push({
           dealerName: dealer.name,
@@ -184,15 +185,22 @@ $("refresh").addEventListener("click", async () => {
 function finish(search) {
   $("cancel").hidden = true; $("progress").hidden = true; $("results").hidden = false;
   sortResults(search);
-  $("resultCount").textContent = `Найдено: ${search.exact.length + search.close.length}`;
+  const matchCount = search.exact.length + search.close.length;
+  const alternatives = matchCount ? [] : search.alternatives.slice(0, 40);
+  $("resultCount").textContent = matchCount ? `Найдено: ${matchCount}` : `Альтернатив: ${alternatives.length}`;
   renderGroup("exact", "Точные совпадения", search.exact);
   renderGroup("close", "Близкие варианты", search.close);
+  renderGroup("alternatives", "Ближайшие альтернативы", alternatives);
   $("failed").innerHTML = search.failed.length ? `<section class="manual-check panel">
     <h2>Проверить вручную (${search.failed.length})</h2>
     <p class="muted">Эти сайты не удалось проверить автоматически. Откройте их вручную и выполните тот же поиск на сайте дилера.</p>
     <div class="manual-check-list">${search.failed.map(manualCheckCard).join("")}</div>
   </section>` : "";
-  if (!search.exact.length && !search.close.length) showMessage(search.selected ? "Совпадений не найдено." : "Для этой марки нет дилеров с корректным HTTPS-сайтом в справочнике.");
+  if (!matchCount && alternatives.length) {
+    showMessage("Точного совпадения нет. Ниже показаны ближайшие варианты той же марки и модели; отличающиеся параметры отмечены в каждой карточке.");
+  } else if (!matchCount) {
+    showMessage(search.selected ? "Не найдено ни точных совпадений, ни доступных альтернатив." : "Для этой марки нет дилеров с корректным HTTPS-сайтом в справочнике.");
+  }
 }
 
 const vehiclePrice = (item) => item.vehicle.price ?? item.vehicle.msrp;
@@ -202,6 +210,11 @@ function resultComparator(a, b) {
   const mode = $("sortOrder").value;
   const fleetTie = fleetPriority(b.vehicle.dealer) - fleetPriority(a.vehicle.dealer);
   const scoreTie = b.score - a.score;
+  if (mode === "recommended" && a.alternative && b.alternative) {
+    return scoreTie || fleetTie ||
+      numberOrInfinity(a.vehicle.dealer.distanceMiles) - numberOrInfinity(b.vehicle.dealer.distanceMiles) ||
+      numberOrInfinity(vehiclePrice(a)) - numberOrInfinity(vehiclePrice(b));
+  }
   if (mode === "priceAsc") {
     return numberOrInfinity(vehiclePrice(a)) - numberOrInfinity(vehiclePrice(b)) || fleetTie || scoreTie;
   }
@@ -232,12 +245,16 @@ function resultComparator(a, b) {
 function sortResults(search) {
   search.exact.sort(resultComparator);
   search.close.sort(resultComparator);
+  search.alternatives.sort(resultComparator);
 }
 $("sortOrder").addEventListener("change", () => {
   if (!activeSearch || $("results").hidden) return;
   sortResults(activeSearch);
   renderGroup("exact", "Точные совпадения", activeSearch.exact);
   renderGroup("close", "Близкие варианты", activeSearch.close);
+  if (!activeSearch.exact.length && !activeSearch.close.length) {
+    renderGroup("alternatives", "Ближайшие альтернативы", activeSearch.alternatives.slice(0, 40));
+  }
 });
 
 function renderGroup(id, title, items) {
@@ -292,10 +309,10 @@ function unverifiedVehicle(dealer, query) {
 
 function card(item) {
   const v = item.vehicle, d = v.dealer, price = v.price ?? v.msrp;
-  return `<article class="card"><span class="badge">${item.exact ? "Точное" : "Близкое"}</span>
+  return `<article class="card"><span class="badge${item.alternative ? " alternative-badge" : ""}">${item.exact ? "Точное" : item.alternative ? "Альтернатива" : "Близкое"}</span>
     ${fleetMobilePhone(d) ? `<span class="badge fleet-badge">Fleet mobile</span>` : ""}
     <h3>${escapeHtml(v.name || [v.year,v.make,v.model,v.trim].filter(Boolean).join(" "))}</h3>
-    ${item.explanations.length ? `<ul class="diff">${item.explanations.map((x)=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>` : ""}
+    ${item.explanations.length ? `<ul class="diff">${item.explanations.map((x)=>`<li>${escapeHtml(readableDifference(x))}</li>`).join("")}</ul>` : ""}
     <div class="meta">
       <span>Цена: ${price == null ? "Не указана" : `$${price.toLocaleString()}`}</span>
       <span>VIN: ${escapeHtml(v.vin || "Не указан")}</span>
@@ -310,6 +327,14 @@ function card(item) {
     ${v.url ? `<a href="${safeUrl(v.url)}" target="_blank" rel="noopener noreferrer">Открыть автомобиль у дилера</a>` : ""}
     ${contactActions(v)}
     <p class="muted">Проверено ${new Date(v.checkedAt).toLocaleString()}. Опубликованная цена требует подтверждения у дилера.</p></article>`;
+}
+
+function readableDifference(text) {
+  const labels = {
+    exteriorColor:"Цвет", trim:"Trim", status:"Наличие", priceMax:"Цена",
+    drivetrain:"Привод", powertrain:"Двигатель", condition:"Состояние",
+  };
+  return String(text).replace(/^([A-Za-z]+):/, (match, field) => `${labels[field] || field}:`);
 }
 
 function dealerContact(dealer) {
@@ -458,6 +483,7 @@ function dedupeAndSort(search) {
   const unique=(items)=>items.filter(({vehicle})=>{const key=vehicle.vin?`vin:${vehicle.vin}`:`${vehicle.dealer.id}:${vehicle.stockNumber||""}:${vehicle.url||""}`;if(seen.has(key))return false;seen.add(key);return true;});
   search.exact=unique(search.exact).sort(resultComparator);
   search.close=unique(search.close).sort(resultComparator);
+  search.alternatives=unique(search.alternatives).sort(resultComparator);
   const failedSeen=new Set();
   search.failed=search.failed.filter((item)=>{
     const key=normalizedWebsite(item.website) || String(item.dealerName).trim().toLowerCase();

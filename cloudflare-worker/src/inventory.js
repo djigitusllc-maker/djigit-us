@@ -608,6 +608,56 @@ export function rank(vehicles, filters, allowRequiredViolations = false) {
   }).filter(Boolean).sort((a, b) => Number(b.exact) - Number(a.exact) || b.score - a.score);
 }
 
+const alternativeWeights = {
+  exteriorColor: 1,
+  trim: 3,
+  status: 4,
+  priceMax: 5,
+  drivetrain: 6,
+  powertrain: 10,
+};
+
+export function rankAlternatives(vehicles, filters) {
+  return vehicles.map((vehicle) => {
+    const explanations = [];
+    let differenceCost = 0;
+    for (const [field, preference] of Object.entries(filters ?? {})) {
+      if (!preference?.value && preference?.value !== 0) continue;
+      const value = actual(vehicle, field);
+      const isCoreIdentity = field === "make" || field === "model";
+      const isCondition = field === "condition";
+      if (value === null || value === undefined || value === "") {
+        if (isCoreIdentity) return null;
+        if (isCondition) continue;
+        differenceCost += (alternativeWeights[field] ?? 8) + 1;
+        explanations.push(`${field}: не удалось проверить`);
+        continue;
+      }
+      const matched = matches(field, value, preference.value) &&
+        (field !== "model" || modelMatchesVehicleName(vehicle, preference.value));
+      if (matched) continue;
+      if (isCoreIdentity || isCondition) return null;
+      differenceCost += alternativeWeights[field] ?? 8;
+      explanations.push(`${field}: ${value} вместо ${preference.value}`);
+    }
+    if (!differenceCost) return null;
+    return { vehicle, exact:false, alternative:true, score:1000 - differenceCost, explanations };
+  }).filter(Boolean).sort((a, b) => b.score - a.score);
+}
+
+const rankedResponse = (vehicles, query, extra = {}) => {
+  const ranked = rank(vehicles, query.filters, query.allowRequiredViolations);
+  const alternatives = query.includeAlternatives
+    ? rankAlternatives(vehicles, query.filters).slice(0, 8)
+    : [];
+  return {
+    exact: ranked.filter((item) => item.exact),
+    close: ranked.filter((item) => !item.exact),
+    alternatives,
+    ...extra,
+  };
+};
+
 export async function searchDealer(dealer, query) {
   const dealerUrl = validateDealerUrl(dealer.website);
   const controller = new AbortController();
@@ -621,8 +671,7 @@ export async function searchDealer(dealer, query) {
           controller.signal,
         );
         if (audiVehicles) {
-          const ranked = rank(audiVehicles, query.filters, query.allowRequiredViolations);
-          return { exact: ranked.filter((item) => item.exact), close: ranked.filter((item) => !item.exact) };
+          return rankedResponse(audiVehicles, query);
         }
       } catch (error) {
         if (error?.name === "AbortError") throw error;
@@ -637,8 +686,7 @@ export async function searchDealer(dealer, query) {
           controller.signal,
         );
         if (mercedesVehicles) {
-          const ranked = rank(mercedesVehicles, query.filters, query.allowRequiredViolations);
-          return { exact: ranked.filter((item) => item.exact), close: ranked.filter((item) => !item.exact) };
+          return rankedResponse(mercedesVehicles, query);
         }
       } catch (error) {
         if (error?.name === "AbortError") throw error;
@@ -772,8 +820,7 @@ export async function searchDealer(dealer, query) {
             }
           } catch { /* keep the inventory-page data when a detail page is unavailable */ }
         }));
-        const ranked = rank(vehicles, query.filters, query.allowRequiredViolations);
-        return { exact: ranked.filter((item) => item.exact), close: ranked.filter((item) => !item.exact), diagnostics };
+        return rankedResponse(vehicles, query, { diagnostics });
       } catch (error) {
         if (error?.name === "AbortError") throw error;
         if (query?.debug) diagnostics.push({ candidate:candidate.href, error:String(error?.message || error) });

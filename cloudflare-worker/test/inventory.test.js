@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   extractDealerOnVehicles, extractDealerVenomVehicles, extractEmbeddedVehicles, extractLlmVehicles,
   extractJazelVehicles, extractVehicleLinks, extractVehicles,
-  inventoryCandidates, rank, validateDealerUrl,
+  inventoryCandidates, rank, rankAlternatives, validateDealerUrl,
 } from "../src/inventory.js";
 
 const dealer = { id:"d1", name:"Dealer", website:"https://dealer.example", fleet:null };
@@ -86,6 +86,33 @@ describe("Worker inventory", () => {
       exteriorColor:{value:"Gray",required:true},
     };
     expect(rank(vehicles, filters).map((item) => item.vehicle.exteriorColor)).toEqual(["Wolf Gray"]);
+  });
+  it("offers the same model in another color before relaxing trim", () => {
+    const vehicles = [
+      { name:"2026 Toyota Camry SE Gray", make:"Toyota", model:"Camry", condition:"New", trim:"SE", exteriorColor:"Gray", dealer },
+      { name:"2026 Toyota Camry XLE White", make:"Toyota", model:"Camry", condition:"New", trim:"XLE", exteriorColor:"White", dealer },
+      { name:"2026 Toyota Corolla SE White", make:"Toyota", model:"Corolla", condition:"New", trim:"SE", exteriorColor:"White", dealer },
+    ];
+    const alternatives = rankAlternatives(vehicles, {
+      make:{value:"Toyota",required:true}, model:{value:"Camry",required:true},
+      condition:{value:"New",required:true}, trim:{value:"SE",required:true},
+      exteriorColor:{value:"White",required:true},
+    });
+    expect(alternatives.map((item) => item.vehicle.name)).toEqual([
+      "2026 Toyota Camry SE Gray",
+      "2026 Toyota Camry XLE White",
+    ]);
+    expect(alternatives[0].explanations).toEqual(["exteriorColor: Gray вместо White"]);
+  });
+  it("keeps make and model strict when building alternatives", () => {
+    const vehicles = [
+      { name:"2026 Toyota Camry Gasoline", make:"Toyota", model:"Camry", condition:"New", powertrain:"Gasoline", dealer },
+      { name:"2026 Toyota Corolla Hybrid", make:"Toyota", model:"Corolla", condition:"New", powertrain:"Hybrid", dealer },
+    ];
+    expect(rankAlternatives(vehicles, {
+      make:{value:"Toyota",required:true}, model:{value:"Camry",required:true},
+      condition:{value:"New",required:true}, powertrain:{value:"Hybrid",required:true},
+    }).map((item) => item.vehicle.model)).toEqual(["Camry"]);
   });
   it("rejects a conflicting vehicle title even when a bad model field says GLB", () => {
     const base = {

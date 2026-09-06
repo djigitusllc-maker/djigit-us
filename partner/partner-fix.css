@@ -1,2 +1,46 @@
 footer{padding:20px;text-align:center;background:#080807;color:#aaa;font-size:13px}
 .bot-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+
+html,body{max-width:100%;overflow-x:hidden}
+.choice{position:relative}.choice input{width:1px!important;height:1px!important;margin:0!important;left:0!important;top:0!important}
+
+@media(max-width:820px){
+  body{background-attachment:scroll;background-position:center top}
+  .partner-header{width:100%;height:64px;padding:7px 16px}
+  .partner-brand{gap:8px;font-size:14px}
+  .partner-brand img{width:44px;height:44px}
+  .header-phone{font-size:14px;white-space:nowrap}
+  .partner-page{display:block;width:100%;max-width:100%;min-height:0;margin:0;padding:28px 16px 48px}
+  .intro{width:100%;padding:0}
+  .partner-pill{font-size:12px;padding:8px 11px}
+  .intro h1{max-width:none;margin:18px 0 14px;font-size:clamp(38px,11vw,52px);line-height:1.02}
+  .intro>p{max-width:none;margin:0;font-size:17px;line-height:1.5}
+  .referred-by{width:100%;max-width:none;margin:22px 0 18px;padding:14px}
+  .benefits{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 28px;font-size:14px}
+  .benefits li{line-height:1.35}
+  .form-card{width:100%;max-width:620px;margin:0 auto;padding:24px;border-radius:18px}
+  .form-card h2{font-size:28px;line-height:1.1}
+  .form-card input,.form-card select{min-height:50px;font-size:16px}
+  .submit-btn,.whatsapp-btn,.success button{width:100%;min-height:54px}
+  footer{width:100%;padding:18px 14px;font-size:11px}
+}
+
+@media(max-width:520px){
+  .partner-header{height:60px;padding:7px 12px}
+  .partner-brand span{display:none}
+  .partner-brand img{width:40px;height:40px}
+  .partner-page{padding:22px 12px 38px}
+  .intro h1{font-size:38px}
+  .benefits{grid-template-columns:1fr;gap:7px;margin-bottom:24px}
+  .form-card{padding:20px 16px;border-radius:16px}
+  .form-card h2{font-size:26px}
+  .choice-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .choice span{padding:12px 4px;font-size:13px}
+  .demo-record{grid-template-columns:1fr}
+}
+
+@media(max-width:350px){
+  .header-phone{font-size:12px}
+  .intro h1{font-size:34px}
+  .choice-grid{grid-template-columns:1fr}
+}

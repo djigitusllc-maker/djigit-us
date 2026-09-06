@@ -1,1 +1,2 @@
 footer{padding:20px;text-align:center;background:#080807;color:#aaa;font-size:13px}
+.bot-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
